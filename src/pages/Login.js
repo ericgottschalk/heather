@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginService from '../services/LoginService';
+import ReactLoading from "react-loading";
 import '../styles/login.css';
 
 class Login extends React.Component {
@@ -33,6 +34,7 @@ class Login extends React.Component {
         const { username, password } = this.state;
 
         if (username && password) {
+            this.setState({ sended: true });
             this.loginService.login(username, password).then(() => {
                 if (this.loginService.isAuthenticated()){
                     window.location = '/home';
@@ -40,12 +42,13 @@ class Login extends React.Component {
                 else{
                     alert('Invalid username or password!');
                 }
+
+                this.state.sended = false;
             });
         }
     }
 
     render() {
-        const { loggingIn } = this.props;
         const { username, password, submitted } = this.state;
         return (
             <div className="container-login">
@@ -64,8 +67,7 @@ class Login extends React.Component {
                                 <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} placeholder="Password *" />
                             </div>
                             <div className="form-group">
-                                <button className="login-form-button">Enter</button>
-                                {loggingIn && <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />}
+                                <button className="login-form-button" disabled={this.state.sended}>{ this.state.sended ? <ReactLoading type="spin" color="#fff" height={'20px'} width={'20px'} /> : "Enter"}</button>
                             </div>
                             <div className="login-form-forgot">
                                 <a href="#">Forgot Username / Password?</a>

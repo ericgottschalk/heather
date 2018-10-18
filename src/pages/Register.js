@@ -1,6 +1,7 @@
 import React from 'react';
 import UserService from '../services/UserService';
 import LoginService from '../services/LoginService';
+import ReactLoading from "react-loading";
 import '../styles/register.css';
 
 class Register extends React.Component {
@@ -42,12 +43,15 @@ class Register extends React.Component {
         const { user } = this.state;
 
         if (user.firstName && user.lastName && user.username && user.password && user.email) {
-            this.userService.register(user).then(() => { this.loginService.login(user.username, user.passwords); });
+            this.setState({ sended: true });
+            this.userService.register(user).then(() => { 
+                this.loginService.login(user.username, user.passwords); 
+                this.state.sended = false;
+            });
         }
     }
 
     render() {
-        const { registering } = this.props;
         const { user, submitted } = this.state;
         return (
             <div className="container-register">
@@ -75,8 +79,7 @@ class Register extends React.Component {
                                 <input type="email" className="form-control" name="email" value={user.email} onChange={this.handleChange} placeholder="Email *" />
                             </div>
                             <div className="form-group">
-                                <button className="register-form-button">Register</button>
-                                {registering && <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />}
+                                <button className="register-form-button" disabled={this.state.sended}>{ this.state.sended ? <ReactLoading type="spin" color="#fff" height={'20px'} width={'20px'} /> : "Register"}</button>
                             </div>
                             <div className="register-form-footer">
                                 <a href="/login">Already have an Account? Sign In!</a>
