@@ -1,0 +1,54 @@
+html {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgba(64,70,86,.98);
+    font-family: Roboto Condensed,sans-serif;
+    color: #dae7f1;
+}
+
+label{
+    color: #dae7f1;
+}
+
+.navbar{
+    background-color: rgba(151,105,245,.98);
+    border: none;
+}
+
+.navbar-brand{
+    color: white!important;
+}
+
+.navbar-brand:hover{
+    color: #dae7f1!important;
+}
+
+.nav.navbar-nav a{
+    color: white!important;
+}
+
+.nav.navbar-nav a:hover{
+    color: #dae7f1!important;
+}
+
+.help-block{
+    color: red!important;
+}
+
+.dropdown-menu{
+    background-color: rgba(151,105,245,.98);
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+    background-color: rgba(151,105,245,.98)!important;
+    color: rgba(64,70,86,.98)!important;
+}
+
+.dropdown-menu li a:hover{
+    color: rgba(64,70,86,.98)!important;
+}
+

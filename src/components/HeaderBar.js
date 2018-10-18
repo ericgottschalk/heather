@@ -12,16 +12,20 @@ class HeaderBar extends React.Component {
 
     userMenuOrLoginLink(){
         if (this.loginService.isAuthenticated()){
-            return (
-                    <NavDropdown eventKey={2} title={this.loginService.getLoggedUser().username} id="basic-nav-dropdown">
-                        <MenuItem eventKey={2.1} href="/profile">Profile</MenuItem>
-                        <MenuItem eventKey={2.2} href="/my-projects">Projetos</MenuItem>
-                        <MenuItem divider />
-                        <MenuItem eventKey={2.3} onClick={() => this.loginService.logout()}>Sair</MenuItem>
-                    </NavDropdown>);
+            return (<Nav pullRight>
+                        <NavDropdown eventKey={2} title={this.loginService.getLoggedUser().username} id="basic-nav-dropdown">
+                            <MenuItem eventKey={2.1} href="/profile">Profile</MenuItem>
+                            <MenuItem eventKey={2.2} href="/my-projects">Projetos</MenuItem>
+                            <MenuItem divider />
+                            <MenuItem eventKey={2.3} onClick={() => this.loginService.logout()}>Sair</MenuItem>
+                        </NavDropdown>
+                    </Nav>);
         }
 
-        return <NavItem eventKey={1} href="/login">Login</NavItem>
+        return (<Nav pullRight>
+                   <NavItem eventKey={1} href="/login">Login</NavItem>
+                   <NavItem eventKey={2} href="/register">Register</NavItem>
+                </Nav>)
     }
 
     render() {
@@ -32,9 +36,7 @@ class HeaderBar extends React.Component {
                         <a href="/home">Heather</a>
                     </Navbar.Brand>
                 </Navbar.Header>
-                <Nav>
-                    {this.userMenuOrLoginLink()}                    
-                </Nav>
+                {this.userMenuOrLoginLink()} 
             </Navbar>
         );
     }

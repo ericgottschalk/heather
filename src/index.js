@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import HeaderBar from './components/HeaderBar';
+import './styles/index.css';
 
 class App extends React.Component {
     render() {
