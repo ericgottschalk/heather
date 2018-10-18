@@ -15,9 +15,9 @@ class HeaderBar extends React.Component {
             return (<Nav pullRight>
                         <NavDropdown eventKey={2} title={this.loginService.getLoggedUser().username} id="basic-nav-dropdown">
                             <MenuItem eventKey={2.1} href="/profile">Profile</MenuItem>
-                            <MenuItem eventKey={2.2} href="/my-projects">Projetos</MenuItem>
+                            <MenuItem eventKey={2.2} href="/my-projects">My Projects</MenuItem>
                             <MenuItem divider />
-                            <MenuItem eventKey={2.3} onClick={() => this.loginService.logout()}>Sair</MenuItem>
+                            <MenuItem eventKey={2.3} onClick={() => this.loginService.logout()}>Logout</MenuItem>
                         </NavDropdown>
                     </Nav>);
         }
@@ -33,9 +33,12 @@ class HeaderBar extends React.Component {
             <Navbar>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="/home">Heather</a>
+                        <a href="/home">Heather</a>            
                     </Navbar.Brand>
                 </Navbar.Header>
+                <Nav>
+                    <NavItem eventKey={1} href="/projects">Projects</NavItem>
+                </Nav>
                 {this.userMenuOrLoginLink()} 
             </Navbar>
         );

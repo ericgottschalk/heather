@@ -8,6 +8,10 @@ class UserService {
     getById(id) {   
         return this.httpService.get('api/user/get/', id);
     }
+
+    getByUsername(username) {   
+        return this.httpService.get('api/user/get/', username);
+    }
     
     register(user) {
         return this.httpService.post('api/user/register', user);
