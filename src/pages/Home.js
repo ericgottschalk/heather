@@ -1,11 +1,11 @@
 import React from 'react';
-import LoginServie from '../services/LoginService';
+import LoginService from '../services/LoginService';
 
 class Home extends React.Component {
     constructor(props){
         super(props);
 
-        this.loginService = new LoginServie();
+        this.loginService = new LoginService();
     }
 
     showUsername(){

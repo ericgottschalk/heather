@@ -12,6 +12,10 @@ class ProjectService {
     getById(id) {   
         return this.httpService.get('api/project/get/', id);
     }
+
+    getByUserId(userId){
+        return this.httpService.get('api/project/user/', userId);
+    }
     
     save(project) {
         return this.httpService.post('api/project/save', project);

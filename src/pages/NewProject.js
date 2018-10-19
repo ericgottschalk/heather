@@ -4,7 +4,6 @@ import ProjectService from '../services/ProjectService';
 import ReactLoading from "react-loading";
 import Select from 'react-select';
 import '../styles/new-project.css';
-import 'react-datepicker/dist/react-datepicker.css';
 
 class NewProject extends React.Component {
     constructor(props) {
@@ -20,9 +19,8 @@ class NewProject extends React.Component {
                 name: '',
                 description: '',
                 whyInvest: '',
-                user: {
-                    id: ''
-                },
+                userId: '',
+                genreId: '',
                 genre: '',
                 platformsRaw: [],
                 targetReleaseYear: '',
@@ -78,7 +76,8 @@ class NewProject extends React.Component {
         this.setState({
             project: {
                 ...project,
-                genre: { id: selected.value, value: selected.value, label: selected.label }
+                genre: { id: selected.value, value: selected.value, label: selected.label },
+                genreId: selected.value
             }
         });
     }
@@ -88,12 +87,14 @@ class NewProject extends React.Component {
 
         this.setState({ submitted: true });
         const { project } = this.state;
-        project.user.id = this.loginService.getLoggedUser().id;
+        project.userId = this.loginService.getLoggedUser().id;
+        project.genre = null;
 
-        if (project.description && project.name && project.whyInvest && project.platformsRaw.length > 0 && project.genre && project.targetReleaseYear) {
+        if (project.description && project.name && project.whyInvest && project.platformsRaw.length > 0 && project.genreId && project.targetReleaseYear && project.userId) {
             this.setState({ sended: true });
             this.projectService.save(project).then(() => {
                 this.setState({ sended: false });
+                window.location = '/my-projects';
             }).catch(err => {
                 this.setState({ sended: false });
             });
