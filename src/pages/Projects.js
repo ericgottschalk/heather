@@ -9,6 +9,8 @@ class Projects extends React.Component {
         return (
             <div>
                 <h2>Projects</h2>
+
+                <p>Not implemented yet</p>
             </div>
         );
     }

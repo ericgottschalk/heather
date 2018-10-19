@@ -45,7 +45,7 @@ class Register extends React.Component {
         if (user.firstName && user.lastName && user.username && user.password && user.email) {
             this.setState({ sended: true });
             this.userService.register(user).then(() => { 
-                this.loginService.login(user.username, user.passwords); 
+                this.loginService.login(user.username, user.password); 
                 this.state.sended = false;
             });
         }

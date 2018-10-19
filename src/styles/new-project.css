@@ -1,6 +1,6 @@
 .container-project{
     width: 100%;
-    min-height: 70vh;
+ 
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -28,16 +28,17 @@
 }
 
 .project-form{
-    width: 290px;
+    width: 100%;
 }
 
 .project-form h2{
-    font-weight: 600;
-    color: rgba(151,105,245,.98);
     text-align: center;
-    width: 100%;
-    display: block;
-    padding-bottom: 54px;
+    font-size: 4.88281rem;
+    font-weight: 400;
+    font-variant: normal;
+    line-height: normal;
+    letter-spacing: .5px;
+    margin: 60px;
 }
 
 .project-form-footer{

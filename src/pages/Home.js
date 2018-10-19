@@ -8,20 +8,12 @@ class Home extends React.Component {
         this.loginService = new LoginService();
     }
 
-    showUsername(){
-        if (this.loginService.isAuthenticated()){
-            return <h2>{this.loginService.getLoggedUser().username}</h2>
-        }
-
-        return <h2>fail</h2>;
-    }
-
     render(){
         return (
             <div>
                 <h2>Home</h2>
 
-                {this.showUsername()}
+                <p>Not implemented yet</p>
             </div>
         );
     }

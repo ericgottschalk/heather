@@ -110,7 +110,7 @@ class NewProject extends React.Component {
         const { project, submitted, loadedPlatforms, platforms, loadedGenres, genres } = this.state;
         return (
             <div className="container-project">
-                <div className="wrap-project">
+                <div className="-project">
                     <div className="project-form">
                         <h2>New Project</h2>
                         <form name="form" onSubmit={this.handleSubmit}>

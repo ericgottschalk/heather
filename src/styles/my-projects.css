@@ -1,0 +1,19 @@
+.my-projects-title{
+    text-align: center;
+    font-size: 4.88281rem;
+    font-weight: 400;
+    font-variant: normal;
+    line-height: normal;
+    letter-spacing: .5px;
+    margin: 60px;
+}
+
+.no-project{
+    text-align: center;
+    font-size: 25px;
+    font-weight: 400;
+    font-variant: normal;
+    line-height: normal;
+    letter-spacing: .5px;
+    margin: 60px;
+}
