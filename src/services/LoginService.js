@@ -26,6 +26,12 @@ class LoginService {
         return localStorage.getItem('user') != null;
     }
 
+    redirectToLoginIfNotAuthenticated(){
+        if (!this.isAuthenticated()){
+            window.location = '/login';
+        }
+    }
+
     getLoggedUser(){
         return JSON.parse(localStorage.getItem('user'));
     }

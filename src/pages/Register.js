@@ -58,7 +58,7 @@ class Register extends React.Component {
                 <div className="wrap-register">
                     <div className="register-info">
                         <h2>Heather</h2>
-                        <p>Share, play and contribute.<br/>Make your project come true.<br/><br/>This is our Indie Game <br/>Crowdfunding platform</p>
+                        <p>Share, discover, play and contribute.<br/>Make your project come true.<br/><br/>This is our Indie Game <br/>Crowdfunding platform</p>
                     </div>
                     <div className="register-form">
                         <h2>Register</h2>

@@ -9,6 +9,9 @@ import {
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Projects from './pages/Projects';
+import MyProjects from './pages/MyProjects';
+import NewProject from './pages/NewProject';
 import HeaderBar from './components/HeaderBar';
 import './styles/index.css';
 
@@ -22,6 +25,9 @@ class App extends React.Component {
                     <Route path='/' exact component={Home} />
                     <Route path='/login' exact component={Login} />
                     <Route path='/register' exact component={Register} />
+                    <Route path='/projects' exact component={Projects} />
+                    <Route path='/my-projects' exact component={MyProjects} />
+                    <Route path='/new-project' exact component={NewProject} />
                     <Route component={Home} />
                 </Switch>
                 </Router>

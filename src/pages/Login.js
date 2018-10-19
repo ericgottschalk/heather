@@ -30,32 +30,37 @@ class Login extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        this.setState({ submitted: true });
+        this.setState({ submitted: true, loginError: false });
         const { username, password } = this.state;
 
         if (username && password) {
             this.setState({ sended: true });
             this.loginService.login(username, password).then(() => {
+                this.setState({ sended: false });
+
                 if (this.loginService.isAuthenticated()){
                     window.location = '/home';
-                }
-                else{
-                    alert('Invalid username or password!');
-                }
-
-                this.state.sended = false;
+                }           
+            }).catch(data => {
+                this.setState({ sended: false, loginError: true, errorMessage: data });
             });
         }
     }
 
+    showError(errorMessage){
+        alert(errorMessage);
+        this.setState({ loginError: false});
+    }
+
     render() {
-        const { username, password, submitted } = this.state;
+        const { username, password, submitted, sended, loginError, errorMessage } = this.state;
         return (
             <div className="container-login">
+                {  loginError ? this.showError(errorMessage) : "" }
                 <div className="wrap-login">
                     <div className="login-info">
                         <h2>Heather</h2>
-                        <p>Share, play and contribute.<br/>Make your project come true.<br/><br/>This is our Indie Game <br/>Crowdfunding platform</p>
+                        <p>Share, discover, play and contribute.<br/>Make your project come true.<br/><br/>This is our Indie Game <br/>Crowdfunding platform</p>
                     </div>
                     <div className="login-form">
                         <h2>Sign In</h2>
@@ -67,7 +72,7 @@ class Login extends React.Component {
                                 <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} placeholder="Password *" />
                             </div>
                             <div className="form-group">
-                                <button className="login-form-button" disabled={this.state.sended}>{ this.state.sended ? <ReactLoading type="spin" color="#fff" height={'20px'} width={'20px'} /> : "Enter"}</button>
+                                <button className="login-form-button" disabled={sended}>{ sended ? <ReactLoading type="spin" color="#fff" height={'20px'} width={'20px'} /> : "Enter"}</button>
                             </div>
                             <div className="login-form-forgot">
                                 <a href="#">Forgot Username / Password?</a>

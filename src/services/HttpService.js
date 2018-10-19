@@ -8,7 +8,7 @@ const httpConfig = {
             if (!response.ok) {
                 if (response.status === 401) {
                     localStorage.removeItem('user');
-                    window.location.location.reload(true);
+                    window.location = '/login';
                 }
 
                 const error = data.message || 'generic api error';
@@ -38,7 +38,7 @@ class HttpService {
             headers: getHeaders(),
         };
 
-        return fetch(config.ApiUrl + action + queryString, requestOptions)
+        return fetch(config.ApiUrl + action + (queryString || ''), requestOptions)
             .then(httpConfig.handleResponse)
     }
 

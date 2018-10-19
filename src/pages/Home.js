@@ -5,12 +5,12 @@ class Home extends React.Component {
     constructor(props){
         super(props);
 
-        this.loginServie = new LoginServie();
+        this.loginService = new LoginServie();
     }
 
     showUsername(){
-        if (this.loginServie.isAuthenticated()){
-            return <h2>{this.loginServie.getLoggedUser().username}</h2>
+        if (this.loginService.isAuthenticated()){
+            return <h2>{this.loginService.getLoggedUser().username}</h2>
         }
 
         return <h2>fail</h2>;
