@@ -1,4 +1,5 @@
 import React from 'react';
+import { Badge } from 'react-bootstrap';
 import '../styles/card.css';
 
 class CardHeader extends React.Component {
@@ -33,6 +34,11 @@ class CardBody extends React.Component {
         
         <p className="body-content">{this.props.text}</p>
         
+        <div className='platform-badges'>
+          {this.props.platforms.map(platform => {
+            return (<Badge className='platform-badge'>{platform.name}</Badge>);
+          })}
+        </div>
         <Button />
       </div>
     )
@@ -51,9 +57,9 @@ class ProjectCard extends React.Component {
   render() {
     const { project } = this.state;
     return (
-      <article className="card">
-        <CardHeader image={project.coverUrl} headerBadge='Test' />
-        <CardBody title={project.name} text={project.description}/>
+      <article className="card" onClick={() => { window.location = '/project/' + project.id }}>
+        <CardHeader image={project.coverUrl} headerBadge={project.genre} />
+        <CardBody title={project.name} text={project.description} platforms={project.platforms} />
       </article>
     );
   }

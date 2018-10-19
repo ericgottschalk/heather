@@ -25,7 +25,6 @@ class NewProject extends React.Component {
                 platformsRaw: [],
                 targetReleaseYear: '',
                 media: []
-
             },
             submitted: false,
         };

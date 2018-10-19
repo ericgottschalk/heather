@@ -1,5 +1,5 @@
 .card {
-    width: 280px;
+    width: 320px;
     display: inline-block;
     margin: 30px;
     box-shadow: 10px 5px 40px 20px rgba(47, 51, 63, 0.98);
@@ -65,4 +65,8 @@
     font-size: 12px;
     text-decoration: none;
     display: block;
+  }
+
+  .platform-badge{
+    margin: 5px;
   }

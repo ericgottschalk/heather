@@ -25,7 +25,8 @@ class MyProjects extends React.Component {
                     name: proj.name,
                     description: proj.description,
                     coverUrl: proj.media != null && proj.media.lenght > 0 ? proj.media[0] || null : 'https://3.bp.blogspot.com/-KuMNDGpeMRA/WKm-wSm9_xI/AAAAAAAAQ_Y/aC6H9ylZDwc2GT3wFTV4E9ITB68oR5rewCLcB/s1600/master.png',
-                    platforms: proj.platformsRaw || []
+                    platforms: proj.platformsRaw || [],
+                    genre: proj.genre.name
                 }
             }) || [];
 
