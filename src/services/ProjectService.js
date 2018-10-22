@@ -9,6 +9,14 @@ class ProjectService {
         return this.httpService.get('api/project/newest/');
     }
 
+    getTopRated() {   
+        return this.httpService.get('api/project/top-rated/');
+    }
+
+    getMostPopular() {   
+        return this.httpService.get('api/project/most-popular/');
+    }
+
     getById(id) {   
         return this.httpService.get('api/project/get/', id);
     }

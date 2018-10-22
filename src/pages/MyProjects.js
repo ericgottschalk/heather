@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginServie from '../services/LoginService';
-import ProjectList from '../components/ProjectList';
+import ProjectCardList from '../components/ProjectCardList';
 import ProjectService from '../services/ProjectService';
 import "../styles/my-projects.css";
 
@@ -45,7 +45,7 @@ class MyProjects extends React.Component {
                 <div>
                     <h2 className="my-projects-title">My Projects</h2>
                 </div>
-                { loadedProjects ? <ProjectList projects={projects} /> : '' }
+                { loadedProjects ? <ProjectCardList projects={projects} /> : '' }
                 { loadedProjects && projects.length == 0 ? <p className='no-project'>No projects yet</p> : '' }
             </div>
         );

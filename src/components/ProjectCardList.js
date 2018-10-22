@@ -1,27 +1,28 @@
 import React from 'react';
-import ProjectItem from './ProjectItem';
-import '../styles/item.css';
+import LoginService from '../services/LoginService';
+import ProjectCard from './ProjectCard';
 
-
-class ProjectList extends React.Component {
+class ProjectCardList extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             projects: props.projects || []
         };
+
+        this.loginService = new LoginService();
     }
 
     render() {
         const { projects } = this.state;
         return (
-            <div className='project-item-list'>
+            <div className='project-list'>
                 {projects.map((project) => {  
-                    return (<ProjectItem project={project}  />)
+                    return (<ProjectCard project={project}  />)
                 })}
             </div>
         );
     }
 }
 
-export default ProjectList;
+export default ProjectCardList;
