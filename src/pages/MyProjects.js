@@ -20,19 +20,10 @@ class MyProjects extends React.Component {
         this.loginService.redirectToLoginIfNotAuthenticated();
 
         this.projectService.getByUserId(this.loginService.getLoggedUser().id).then(data => { 
-            data = data.map(proj => {
-                return {
-                    id: proj.id,
-                    name: proj.name,
-                    description: proj.description,
-                    coverUrl: proj.media != null && proj.media.lenght > 0 ? proj.media[0] || null : 'http://cdn1.itpro.co.uk/sites/itpro/files/styles/article_main_wide_image/public/2015/11/windows-10-screen.jpg?itok=TutXVc_1',
-                    platforms: proj.platformsRaw || [],
-                    genre: proj.genre.name
-                }
-            }) || [];
+            var projects = this.projectService.map(data);
 
             this.setState({
-                projects: data,
+                projects: projects,
                 loadedProjects: true
             });
         });

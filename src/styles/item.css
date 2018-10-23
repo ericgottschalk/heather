@@ -4,7 +4,7 @@
 
 .item {
     width: 520px;
-    margin: 0 30px 15px 30px;
+    margin: 0 0 15px 0px;
     transition: .25s;
     display: -webkit-inline-box;
     

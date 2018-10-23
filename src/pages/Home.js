@@ -24,55 +24,28 @@ class Home extends React.Component {
 
     componentDidMount(){
         this.projectService.getNewest().then(data => { 
-            data = data.map(proj => {
-                return {
-                    id: proj.id,
-                    name: proj.name,
-                    description: proj.description,
-                    coverUrl: proj.media != null && proj.media.lenght > 0 ? proj.media[0] || null : 'http://cdn1.itpro.co.uk/sites/itpro/files/styles/article_main_wide_image/public/2015/11/windows-10-screen.jpg?itok=TutXVc_1',
-                    platforms: proj.platformsRaw || [],
-                    genre: proj.genre.name
-                }
-            }) || [];
+            var projects = this.projectService.map(data);
 
             this.setState({
-                projectsNewest: data,
+                projectsNewest: projects,
                 loadedProjectsNewest: true
             });
         });
 
         this.projectService.getTopRated().then(data => { 
-            data = data.map(proj => {
-                return {
-                    id: proj.id,
-                    name: proj.name,
-                    description: proj.description,
-                    coverUrl: proj.media != null && proj.media.lenght > 0 ? proj.media[0] || null : 'http://cdn1.itpro.co.uk/sites/itpro/files/styles/article_main_wide_image/public/2015/11/windows-10-screen.jpg?itok=TutXVc_1',
-                    platforms: proj.platformsRaw || [],
-                    genre: proj.genre.name
-                }
-            }) || [];
+            var projects = this.projectService.map(data);
 
             this.setState({
-                projectsTopRated: data,
+                projectsTopRated: projects,
                 loadedProjectsTopRated: true
             });
         });
 
         this.projectService.getMostPopular().then(data => { 
-            data = data.map(proj => {
-                return {
-                    id: proj.id,
-                    name: proj.name,
-                    description: proj.description,
-                    coverUrl: proj.media != null && proj.media.lenght > 0 ? proj.media[0] || null : 'http://cdn1.itpro.co.uk/sites/itpro/files/styles/article_main_wide_image/public/2015/11/windows-10-screen.jpg?itok=TutXVc_1',
-                    platforms: proj.platformsRaw || [],
-                    genre: proj.genre.name
-                }
-            }) || [];
+            var projects = this.projectService.map(data);
 
             this.setState({
-                projectsMostPopular: data,
+                projectsMostPopular: projects,
                 loadedProjectsMostPopular: true
             });
         });
