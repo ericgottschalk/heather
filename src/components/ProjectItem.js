@@ -1,33 +1,34 @@
 import React from 'react';
 import { Badge } from 'react-bootstrap';
 
-class ItemHeader extends React.Component {
+class Item extends React.Component {
+
   render() {
-    const { image, headerBadge } = this.props;
-    var style = { 
-        backgroundImage: 'url(' + image + ')',
+    let style = { 
+      backgroundImage: 'url(' + this.props.project.coverUrl + ')',
     };
     return (
-      <header style={style} id={image} className="item-header">
-        { headerBadge ? <h4 className="item-header--title">{headerBadge}</h4> : '' }
-      </header>
-    )
-  }
-}
-
-class ItemBody extends React.Component {
-  render() {
-    return (
-      <div className="item-body"> 
-        <div className="item-title-desc truncate">   
-          <h2>{this.props.title}</h2>
-          
-          <div className='platform-badges'>
-            {this.props.platforms.map(platform => {
+      <div className="cell-content">
+        <div className="item item-thumbnail" style={style}>
+          <div className="thumbnail-pill">
+            <p>{this.props.project.genre}</p>
+          </div>
+        </div>
+        <div className="item item-label">
+          <div>
+            <h2 className="headline truncate">{this.props.project.name}</h2>
+          </div>
+          <div className="spacer2"></div>
+          <div className='item-context platform-badges'>
+            {this.props.project.platforms.map(platform => {
               return (<Badge className='platform-badge'>{platform.name}</Badge>);
             })}
           </div>
-        </div>   
+          <div className="spacer"></div>
+          <div className="label-description">
+            <p className=""><strong>{this.props.project.date}</strong> by {this.props.project.username}</p>
+          </div>
+        </div>
       </div>
     )
   }
@@ -46,8 +47,7 @@ class ProjectItem extends React.Component {
     const { project } = this.state;
     return (
       <article className="item" onClick={() => { window.location = '/project/' + project.id }}>
-        <ItemHeader image={project.coverUrl} headerBadge={project.genre} />
-        <ItemBody title={project.name} text={project.description} platforms={project.platforms} />
+        <Item project={project} />
       </article>
     );
   }

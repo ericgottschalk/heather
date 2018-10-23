@@ -1,0 +1,21 @@
+footer {
+    margin: 0 auto;
+    width: 100%;
+    border-top: 0.0625em solid lightgrey;
+    bottom: 0;
+    color: #fff;
+    height: 5em;
+    position: absolute;
+  }
+  footer:before,
+  footer:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  footer p {
+    float: left;
+    text-align: center;
+    width: 100%;
+    padding: 1.25em;
+  }

@@ -1,0 +1,123 @@
+* {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  width: 100%;
+  padding: 50px 20px;
+  padding-top: 100px;
+  display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    height: auto;
+    min-height: 100vh;
+    padding-top: 100px;
+  }
+}
+
+.profile-card {
+  width: 100%;
+  min-height: 460px;
+  margin: auto;
+  box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
+  background: #fff;
+  border-radius: 12px;
+  max-width: 700px;
+  position: relative;
+  margin-top: 50px!important;
+  padding-bottom: 50px!important;
+}
+
+.profile-card-img {
+  width: 150px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  z-index: 4;
+  box-shadow: 0px 5px 50px 0px rgba(151,105,245,.98), 0px 0px 0px 3px rgba(151,105,245,.98);
+}
+
+@media screen and (max-width: 576px) {
+  .profile-card-img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.profile-card-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.profile-card-content {
+  margin-top: -35px;
+  text-align: center;
+  padding: 0 20px;
+  padding-bottom: 40px;
+  transition: all .3s;
+}
+.profile-card-name {
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+.profile-card-desc {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+.profile-card-location {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.profile-card-info {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-top: 35px;
+}
+.profile-card-info-item {
+  padding: 10px 35px;
+  min-width: 150px;
+}
+@media screen and (max-width: 768px) {
+  .profile-card-info-item {
+    padding: 10px 20px;
+    min-width: 120px;
+  }
+}
+.profile-card-info-title {
+  font-weight: 700;
+  font-size: 27px;
+  color: #324e63;
+}
+.profile-card-info-text {
+  font-weight: 500;
+  margin-top: 7px;
+}
+
+.profile-card-options{
+    display: flex;
+}
+
+.profile-button{
+    font-size: 15px;
+    line-height: 1.5;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    background: rgba(151,105,245,.98);
+}

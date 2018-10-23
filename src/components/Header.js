@@ -2,7 +2,7 @@ import React from 'react';
 import {Navbar, NavItem, Nav, MenuItem, NavDropdown} from 'react-bootstrap';
 import LoginServie from '../services/LoginService';
 
-class HeaderBar extends React.Component {
+class Header extends React.Component {
     constructor(props){
         super(props);
 
@@ -47,4 +47,4 @@ class HeaderBar extends React.Component {
     }
 }
 
-export default HeaderBar;
+export default Header;
