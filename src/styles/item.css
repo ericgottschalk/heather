@@ -97,11 +97,13 @@ h1 {
   flex-direction: column;
   justify-content: flex-start;
   padding-left: 24px;
+  overflow: hidden;
 }
 
 .item-label h2 {
   max-height: 78px;
   overflow-y: hidden;
+  text-align: left;
 }
 
 .item-context {
@@ -110,6 +112,7 @@ h1 {
   display: block;
   max-height: 72px;
   overflow-y: hidden;
+  text-align: left;
 }
 
 .context-link {
