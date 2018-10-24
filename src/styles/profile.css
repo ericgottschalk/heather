@@ -121,3 +121,11 @@
     border-radius: 5px;
     background: rgba(151,105,245,.98);
 }
+
+.user-projects-list{
+    width: 70%;
+}
+
+.center{
+    text-align: center;
+}

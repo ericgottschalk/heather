@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginService from '../services/LoginService';
 import UserService from '../services/UserService';
+import ProjectService from '../services/ProjectService';
 import ProjectList from '../components/ProjectList';
 import '../styles/profile.css'
 
@@ -10,6 +11,7 @@ class Profile extends React.Component {
 
         this.userService = new UserService();
         this.loginService = new LoginService();
+        this.projectService = new ProjectService();
 
         if (this.loginService.isAuthenticated()){
             if (this.loginService.getLoggedUser().username == this.props.match.params.username){
@@ -30,18 +32,34 @@ class Profile extends React.Component {
                 projectsCount: 0, 
             },
             projects: [],
-            loadedProjects: true
+            loadedProjects: false
         };
     }
 
     componentDidMount() {
+        this.projectService.getByUsername(this.props.match.params.username).then(data => { 
+            var projects = this.projectService.map(data);
+
+            this.setState({
+                projects: projects,
+                loadedProjects: true
+            });
+        });
+    }
+
+    toggleFollow(){
         
+    }
+
+    loggedUserIsFollowing(){
+        return false;
     }
 
     render() {
         const { user, projects,loadedProjects } = this.state;
+        const loggedUserIsFollowing = this.loggedUserIsFollowing();
         return (
-            <div className='profile-content'>
+            <div className='profile-content center'>
                 <div className="wrapper">
                     <div className="profile-card">
                         <div className="profile-card-img">
@@ -69,10 +87,13 @@ class Profile extends React.Component {
                                     <div className="profile-card-info-text">Projects</div>
                                </div>
                             </div>
+                            { this.loginService.isAuthenticated() ?
                             <div className="profile-card-options">
                                 <button className="profile-button">Message</button>
-                                <button className="profile-button">Follow</button>
+                                <button className="profile-button" onClick={() => { this.toggleFollow(); }}>{loggedUserIsFollowing ? 'Follow' : 'Unfollow'}</button>
                             </div>
+                            : ''
+                            }
                         </div>
                     </div>
                 </div>
