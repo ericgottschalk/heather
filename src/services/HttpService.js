@@ -1,5 +1,5 @@
 import config from '../config';
-import { getHeaders } from '../helpers/httpHelper';
+import { getHeaders, getAuthHeader } from '../helpers/httpHelper';
 
 const httpConfig = {
     handleResponse(response) {
@@ -47,6 +47,17 @@ class HttpService {
             method: 'PUT',
             headers: getHeaders(),
             body: JSON.stringify(body)
+        };
+
+        return fetch(config.ApiUrl + action, requestOptions)
+            .then(httpConfig.handleResponse)
+    }
+
+    postFormData(action, formData){
+        const requestOptions = {
+            method: 'POST',
+            headers: getAuthHeader(),
+            body: formData
         };
 
         return fetch(config.ApiUrl + action, requestOptions)
