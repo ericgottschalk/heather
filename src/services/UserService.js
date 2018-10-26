@@ -12,7 +12,7 @@ class UserService {
     }
 
     getByUsername(username) {
-        return this.httpService.get('api/user/get/', username);
+        return this.httpService.get('api/user/get/username/', username);
     }
 
     register(user) {
@@ -38,8 +38,8 @@ class UserService {
             country: user.country || '',
             phrase: user.phrase || '',
             webSite: user.webSite || '',
-            projects: user.projects || '',
-            dateCreate: new Date(user.dateCreate).toLocaleDateString(),
+            projects: user.projects || [],
+            dateRegister: new Date(user.dateCreate).toLocaleDateString(),
             verified: user.verified
         }
     };

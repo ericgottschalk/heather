@@ -36,11 +36,7 @@ class Login extends React.Component {
         if (username && password) {
             this.setState({ sended: true });
             this.loginService.login(username, password).then(() => {
-                this.setState({ sended: false });
-
-                if (this.loginService.isAuthenticated()){
-                    window.location = '/home';
-                }           
+                this.setState({ sended: false });        
             }).catch(data => {
                 this.setState({ sended: false, loginError: true, errorMessage: data });
             });

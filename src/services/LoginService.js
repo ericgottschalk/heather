@@ -10,7 +10,7 @@ class LoginService {
             .then(user => {
                 if (user.token) {
                     localStorage.setItem('user', JSON.stringify(user));
-                    window.location = '/profile';
+                    window.location = '/edit-profile';
                 }
 
                 return user;

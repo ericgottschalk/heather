@@ -34,7 +34,7 @@ class EditProfile extends React.Component {
     }
 
     componentDidMount() {
-        this.userService.getByUsername(this.loginService.getLoggedUser().id).then(data => {
+        this.userService.getById(this.loginService.getLoggedUser().id).then(data => {
             let user = this.userService.map(data);
 
             this.setState({
@@ -83,44 +83,48 @@ class EditProfile extends React.Component {
         return (
             <div className='container-edit-profile'>         
                 { loadedUser ?
-                <div>
-                    <div className="profile-card-img">    
-                        <input type="file" id='profile-picture-input' onChange={this.handleFileUpload} />
-                        <label htmlFor="profile-picture-input">
-                            <img src={user.profilePicture} alt="Change picture" />
-                        </label>   
-                    </div>  
-                    <div className='profile-see-as-visitor'>
-                        <a href={'/user/' + user.username}>See as visitor</a>
+                <div className='wrapper'>
+                    <div className='edit-profile-card'>
+                        <div className="profile-card-img">    
+                            <input type="file" id='profile-picture-input' onChange={this.handleFileUpload} />
+                            <label htmlFor="profile-picture-input">
+                                <img src={user.profilePicture} alt="Change picture" />
+                            </label>   
+                        </div>  
+                        <div className='profile-see-as-visitor'>
+                            <a href={'/user/' + user.username}>See as visitor</a>
+                        </div>
+                        <div className='form-edit-profile-content'>
+                            <form name="form" className='form-edit-profile' onSubmit={this.handleSubmit}>
+                                <div className={'form-group' + (submitted && !user.firstName ? ' has-error' : '')}>
+                                    <input type="text" className="form-control" name="firstName" value={user.firstName} onChange={this.handleChange} placeholder="First Name *" />
+                                </div>
+                                <div className={'form-group' + (submitted && !user.lastName ? ' has-error' : '')}>
+                                    <input type="text" className="form-control" name="lastName" value={user.lastName} onChange={this.handleChange} placeholder="Last Name *" />
+                                </div>
+
+                                <div className='form-group'>
+                                    <input type="text" className="form-control" name="city" value={user.city} onChange={this.handleChange} placeholder="City" />
+                                </div>
+
+                                <div className='form-group'>
+                                    <input type="text" className="form-control" name="country" value={user.country} onChange={this.handleChange} placeholder="Country" />
+                                </div>
+
+                                <div className='form-group'>
+                                    <input type="text" className="form-control" name="webSite" value={user.webSite} onChange={this.handleChange} placeholder="Web Site" />
+                                </div>
+
+                                <div className='form-group'>
+                                    <input type="text" className="form-control" name="phrase" value={user.phrase} onChange={this.handleChange} placeholder="Profile Phrase" />
+                                </div>
+
+                                <div className="form-group">
+                                    <button className="register-form-button" disabled={this.state.sended}>{this.state.sended ? <ReactLoading type="spin" color="#fff" height={'20px'} width={'20px'} /> : "Save"}</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <form name="form" className='form-edit-profile' onSubmit={this.handleSubmit}>
-                        <div className={'form-group' + (submitted && !user.firstName ? ' has-error' : '')}>
-                            <input type="text" className="form-control" name="firstName" value={user.firstName} onChange={this.handleChange} placeholder="First Name *" />
-                        </div>
-                        <div className={'form-group' + (submitted && !user.lastName ? ' has-error' : '')}>
-                            <input type="text" className="form-control" name="lastName" value={user.lastName} onChange={this.handleChange} placeholder="Last Name *" />
-                        </div>
-
-                        <div className='form-group'>
-                            <input type="text" className="form-control" name="city" value={user.city} onChange={this.handleChange} placeholder="City" />
-                        </div>
-
-                        <div className='form-group'>
-                            <input type="text" className="form-control" name="country" value={user.country} onChange={this.handleChange} placeholder="Country" />
-                        </div>
-
-                        <div className='form-group'>
-                            <input type="text" className="form-control" name="webSite" value={user.webSite} onChange={this.handleChange} placeholder="Web Site" />
-                        </div>
-
-                        <div className='form-group'>
-                            <input type="text" className="form-control" name="phrase" value={user.phrase} onChange={this.handleChange} placeholder="Profile Phrase" />
-                        </div>
-
-                        <div className="form-group">
-                            <button className="register-form-button" disabled={this.state.sended}>{this.state.sended ? <ReactLoading type="spin" color="#fff" height={'20px'} width={'20px'} /> : "Save"}</button>
-                        </div>
-                    </form>
                 </div>
                 : '' }     
             </div>

@@ -70,7 +70,7 @@ class Profile extends React.Component {
                             <div className="profile-card-content">
                                 <div className="profile-card-name">{user.firstName + ' ' + user.lastName}</div>
                                 <div className="profile-card-desc">{user.username}{ user.verified ? <i className="fas fa-check" alt='Verified'></i> : ''}</div>
-                                <div className="profile-card-desc">Since {user.dateCreate}</div>
+                                <div className="profile-card-desc">Since {user.dateRegister}</div>
                                 <div className="profile-card-desc">{user.phrase}</div>
                                 <div className="profile-card-desc"><a href={user.webSite} target='_blank'>{user.webSite}</a></div>
                                 <div className="profile-card-location">
@@ -81,7 +81,7 @@ class Profile extends React.Component {
                             { this.loginService.isAuthenticated() ?
                             <div className="profile-card-options">                 
                                 { this.isProfileOfLoggedUser() ?
-                                    <button className="profile-button" onClick={() => { window.location = '/profile'; }}>Edit</button>
+                                    <button className="profile-button" onClick={() => { window.location = '/edit-profile'; }}>Edit</button>
                                 : 
                                 <button className="profile-button" onClick={() => { alert('Not implemented yet'); }}>Message</button>
                                 }
