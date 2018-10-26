@@ -26,7 +26,7 @@ class Item extends React.Component {
           </div>
           <div className="spacer"></div>
           <div className="label-description">
-            <p className=""><strong>{this.props.project.date}</strong> by {this.props.project.username}</p>
+            <p className=""><strong>{this.props.project.date}</strong> by: {this.props.project.username}{ this.props.project.userIsVerified ? <i className="fas fa-check" alt='Verified'></i> : ''}</p>
           </div>
         </div>
       </div>

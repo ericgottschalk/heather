@@ -51,7 +51,8 @@ class ProjectService {
                 platforms: proj.platformsRaw || [],
                 genre: proj.genre.name,
                 date: proj.dateCreated,
-                username: proj.user.username
+                username: proj.user.username,
+                userIsVerified: proj.user.verified
             }
         }) || [];
     }

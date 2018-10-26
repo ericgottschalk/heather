@@ -1,5 +1,6 @@
 import HttpService from './HttpService';
 import config from '../config';
+import noavatar from '../images/no_avatar.jpg';
 
 class UserService {
     constructor() {
@@ -29,14 +30,17 @@ class UserService {
     map(user) {
         return {
             id: user.id,
+            username: user.username,
             firstName: user.firstName,
             lastName: user.lastName,
-            profilePicture: config.ApiUrl + user.profilePictureUrl,
+            profilePicture: user.profilePictureUrl ? config.ApiUrl + user.profilePictureUrl : noavatar,
             city: user.city || '',
             country: user.country || '',
             phrase: user.phrase || '',
             webSite: user.webSite || '',
-            projects: user.projects || ''
+            projects: user.projects || '',
+            dateCreate: new Date(user.dateCreate).toLocaleDateString(),
+            verified: user.verified
         }
     };
 }

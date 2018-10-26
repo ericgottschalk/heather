@@ -51,7 +51,7 @@ class EditProfile extends React.Component {
         formData.append('id', this.loginService.getLoggedUser().id);
         formData.append('file', file);
 
-        this.userService.uploadProfilePicture(formData).then(window.location.reload());
+        this.userService.uploadProfilePicture(formData).then(() => { window.location.reload(); });
     }
 
     handleChange(event) {
@@ -74,48 +74,55 @@ class EditProfile extends React.Component {
         if (user.firstName && user.lastName) {
             this.setState({ sended: true });
 
-            this.userService.update(user).then(window.location.reload());
+            this.userService.update(user).then(() => { window.location.reload(); });
         }
     }
 
     render() {
-        const { user, submitted } = this.state;
+        const { user, submitted, loadedUser } = this.state;
         return (
-            <div>
-                <div className="profile-card-img">
-                    <input type="file" id='profile-picture-input' onChange={this.handleFileUpload} />
-                    <label htmlFor="profile-picture-input">
-                        <img src={user.profilePicture} alt="profile card" />
-                    </label>
+            <div className='container-edit-profile'>         
+                { loadedUser ?
+                <div>
+                    <div className="profile-card-img">    
+                        <input type="file" id='profile-picture-input' onChange={this.handleFileUpload} />
+                        <label htmlFor="profile-picture-input">
+                            <img src={user.profilePicture} alt="Change picture" />
+                        </label>   
+                    </div>  
+                    <div className='profile-see-as-visitor'>
+                        <a href={'/user/' + user.username}>See as visitor</a>
+                    </div>
+                    <form name="form" className='form-edit-profile' onSubmit={this.handleSubmit}>
+                        <div className={'form-group' + (submitted && !user.firstName ? ' has-error' : '')}>
+                            <input type="text" className="form-control" name="firstName" value={user.firstName} onChange={this.handleChange} placeholder="First Name *" />
+                        </div>
+                        <div className={'form-group' + (submitted && !user.lastName ? ' has-error' : '')}>
+                            <input type="text" className="form-control" name="lastName" value={user.lastName} onChange={this.handleChange} placeholder="Last Name *" />
+                        </div>
+
+                        <div className='form-group'>
+                            <input type="text" className="form-control" name="city" value={user.city} onChange={this.handleChange} placeholder="City" />
+                        </div>
+
+                        <div className='form-group'>
+                            <input type="text" className="form-control" name="country" value={user.country} onChange={this.handleChange} placeholder="Country" />
+                        </div>
+
+                        <div className='form-group'>
+                            <input type="text" className="form-control" name="webSite" value={user.webSite} onChange={this.handleChange} placeholder="Web Site" />
+                        </div>
+
+                        <div className='form-group'>
+                            <input type="text" className="form-control" name="phrase" value={user.phrase} onChange={this.handleChange} placeholder="Profile Phrase" />
+                        </div>
+
+                        <div className="form-group">
+                            <button className="register-form-button" disabled={this.state.sended}>{this.state.sended ? <ReactLoading type="spin" color="#fff" height={'20px'} width={'20px'} /> : "Save"}</button>
+                        </div>
+                    </form>
                 </div>
-                <form name="form" onSubmit={this.handleSubmit}>
-                    <div className={'form-group' + (submitted && !user.firstName ? ' has-error' : '')}>
-                        <input type="text" className="form-control" name="firstName" value={user.firstName} onChange={this.handleChange} placeholder="First Name *" />
-                    </div>
-                    <div className={'form-group' + (submitted && !user.lastName ? ' has-error' : '')}>
-                        <input type="text" className="form-control" name="lastName" value={user.lastName} onChange={this.handleChange} placeholder="Last Name *" />
-                    </div>
-
-                    <div className='form-group'>
-                        <input type="text" className="form-control" name="city" value={user.city} onChange={this.handleChange} placeholder="City" />
-                    </div>
-
-                    <div className='form-group'>
-                        <input type="text" className="form-control" name="country" value={user.country} onChange={this.handleChange} placeholder="Country" />
-                    </div>
-
-                    <div className='form-group'>
-                        <input type="text" className="form-control" name="webSite" value={user.webSite} onChange={this.handleChange} placeholder="Web Site" />
-                    </div>
-
-                    <div className='form-group'>
-                        <input type="text" className="form-control" name="phrase" value={user.phrase} onChange={this.handleChange} placeholder="Profile Phrase" />
-                    </div>
-
-                    <div className="form-group">
-                        <button className="register-form-button" disabled={this.state.sended}>{this.state.sended ? <ReactLoading type="spin" color="#fff" height={'20px'} width={'20px'} /> : "Save"}</button>
-                    </div>
-                </form>
+                : '' }     
             </div>
         );
     }

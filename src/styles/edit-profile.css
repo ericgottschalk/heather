@@ -1,5 +1,22 @@
 
+.container-edit-profile{
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: block;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+}
 
+.form-edit-profile{
+  justify-content: center;
+  width: 520px;
+}
 
 .profile-card-img {
     margin-top: 150px!important;
@@ -22,8 +39,8 @@
       height: 120px;
     }
 
-    form{
-        margin: 10px 10px 10px 10px;
+    .form-edit-profile{
+      width: 100%;
     }
   }
   
@@ -37,5 +54,19 @@
   }
 
   #profile-picture-input{
-      display: none;
+    display: none;
+  }
+
+  .profile-see-as-visitor{
+    margin-bottom: 20px;
+    margin-top: -60px;
+    color:rgba(151,105,245,.98);
+  }
+
+  .profile-see-as-visitor a{
+    color:rgba(151,105,245,.98);
+  }
+
+  .profile-see-as-visitor a:hover{
+    color: white;
   }

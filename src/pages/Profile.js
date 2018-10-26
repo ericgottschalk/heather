@@ -3,6 +3,7 @@ import LoginService from '../services/LoginService';
 import UserService from '../services/UserService';
 import ProjectService from '../services/ProjectService';
 import ProjectList from '../components/ProjectList';
+import { Tabs, Tab } from 'react-bootstrap';
 import '../styles/profile.css'
 
 class Profile extends React.Component {
@@ -13,17 +14,12 @@ class Profile extends React.Component {
         this.loginService = new LoginService();
         this.projectService = new ProjectService();
 
-        if (this.loginService.isAuthenticated()){
-            if (this.loginService.getLoggedUser().username == this.props.match.params.username){
-                window.location = '/profile';
-            }
-        }
-
         this.state = {
             user: {},
             loadedUser: false,
             projects: [],
-            loadedProjects: false
+            loadedProjects: false,
+            show: false
         };
     }
 
@@ -45,13 +41,27 @@ class Profile extends React.Component {
                 loadedUser: true
             });
         });
+
+        this.setState({
+            show: true
+        });
     }
 
+    isProfileOfLoggedUser(){
+        if (this.loginService.isAuthenticated()){
+            if (this.loginService.getLoggedUser().username == this.props.match.params.username){
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     render() {
-        const { user, projects,loadedProjects, show} = this.state;
+        const { user, projects,loadedProjects, loadedUser, show} = this.state;
         return (
             <div className='profile-content center'>
+                { show && loadedUser ?
                 <div className="wrapper">
                     <div className="profile-card">
                         <div className="profile-card-img">
@@ -59,7 +69,8 @@ class Profile extends React.Component {
                         </div>
                             <div className="profile-card-content">
                                 <div className="profile-card-name">{user.firstName + ' ' + user.lastName}</div>
-                                <div className="profile-card-desc">{user.username}</div>
+                                <div className="profile-card-desc">{user.username}{ user.verified ? <i className="fas fa-check" alt='Verified'></i> : ''}</div>
+                                <div className="profile-card-desc">Since {user.dateCreate}</div>
                                 <div className="profile-card-desc">{user.phrase}</div>
                                 <div className="profile-card-desc"><a href={user.webSite} target='_blank'>{user.webSite}</a></div>
                                 <div className="profile-card-location">
@@ -67,27 +78,33 @@ class Profile extends React.Component {
                                         {user.city} - {user.country}
                                     </span>
                             </div>
-                            <div className="profile-card-info">
-                                <div className="profile-card-info-item">
-                                    <div className="profile-card-info-title">{loadedProjects ? projects.length : 0}</div>
-                                    <div className="profile-card-info-text">Projects</div>
-                               </div>
-                            </div>
                             { this.loginService.isAuthenticated() ?
-                            <div className="profile-card-options">
-                                <button className="profile-button">Message</button>
+                            <div className="profile-card-options">                 
+                                { this.isProfileOfLoggedUser() ?
+                                    <button className="profile-button" onClick={() => { window.location = '/profile'; }}>Edit</button>
+                                : 
+                                <button className="profile-button" onClick={() => { alert('Not implemented yet'); }}>Message</button>
+                                }
                             </div>
                             : ''
                             }
                         </div>
                     </div>
                 </div>
+                : ''
+                }
+                { show ? 
                 <div className='user-projects-list'>
-                    <div>
-                        { loadedProjects ? <ProjectList projects={projects} /> : '' }
-                        { loadedProjects && projects.length == 0 ? <p className='no-project'>No projects yet</p> : '' }
-                    </div>
+                    <Tabs defaultActiveKey={1} id="tab-projects" className="projects-tab roxinho">
+                        <Tab eventKey={1} title="Projects" animation>
+                            <div>
+                            { loadedProjects ? <ProjectList projects={projects} /> : '' }
+                            { loadedProjects && projects.length == 0 ? <p className='no-project'>No projects yet</p> : '' }
+                            </div>
+                        </Tab>          
+                    </Tabs>      
                 </div>
+                : ''}
             </div>
         );
     }
