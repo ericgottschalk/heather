@@ -57,7 +57,7 @@ class ProjectCard extends React.Component {
   render() {
     const { project } = this.state;
     return (
-      <article className="card" onClick={() => { window.location = '/project/' + project.id }}>
+      <article className="card" onClick={() => { window.location = '/project/' + project.hash }}>
         <CardHeader image={project.coverUrl} headerBadge={project.genre} />
         <CardBody title={project.name} text={project.description} platforms={project.platforms} />
       </article>

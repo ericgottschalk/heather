@@ -16,7 +16,7 @@ class Header extends React.Component {
                         <NavItem eventKey={1} href="/new-project">New Project</NavItem>
                         <NavDropdown eventKey={2} title={this.loginService.getLoggedUser().username} id="basic-nav-dropdown">
 
-                            <MenuItem eventKey={2.1} href="/profile">Profile</MenuItem>
+                            <MenuItem eventKey={2.1} href="/edit-profile">Profile</MenuItem>
                             <MenuItem eventKey={2.2} href="/my-projects">My Projects</MenuItem>
                             <MenuItem divider />
                             <MenuItem eventKey={2.3} onClick={() => this.loginService.logout()}><i className="fa fa-sign-out"></i> Logout</MenuItem>

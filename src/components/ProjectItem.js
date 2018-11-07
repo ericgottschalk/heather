@@ -46,7 +46,7 @@ class ProjectItem extends React.Component {
   render() {
     const { project } = this.state;
     return (
-      <article className="item" onClick={() => { window.location = '/project/' + project.id }}>
+      <article className="item" onClick={() => { window.location = '/project/' + project.hash }}>
         <Item project={project} />
       </article>
     );
