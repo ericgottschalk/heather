@@ -64,7 +64,8 @@ class ProjectService {
             date: proj.dateCreated,
             username: proj.user.username,
             userIsVerified: proj.user.verified,
-            hash: proj.hash
+            hash: proj.hash,
+            webSite: proj.webSite
         };
     }
 

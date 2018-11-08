@@ -38,21 +38,19 @@ class Project extends React.Component {
             <div>
                 { loadedProject ? 
                 <div>
-                    <h2>Not implemented yet.</h2>
-
                     <h2>{project.name}</h2>
 
                     <h2>{project.description}</h2>
 
                     <div>
-                        <a className='project-a' href={'user/' + project.username}>Developer profile: {project.username}</a>
+                        <a className='project-a' href={'/user/' + project.username}>Developer profile: {project.username}</a>
                     </div>
                     
                     <div>
                         <a className='project-a' href={project.webSite}>Web Site: {project.webSite}</a>
                     </div>
                 </div>
-                : 'null' }
+                : 'loading...' }
             </div>
         );
     }
