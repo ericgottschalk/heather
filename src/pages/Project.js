@@ -42,31 +42,39 @@ class Project extends React.Component {
             <div>
                 { loadedProject ? 
                 <div>                    
-                    <h2>{project.name}</h2>
+                    <h2 className='project-title'>{project.name}</h2>
                     <div className='project-top-content'>
                         <div className='project-image-gallery'>
                             <ImageGallery items={project.images} />
                         </div>
                         <div className='wrap-project-infos'>
-                            <div className='project-budget-progress-bar'></div>
-                            <div className='project-genre'><p>Genre: {project.genre}</p></div>
-                            <div className='project-platform-badges'>
-                                {project.platforms.map(platform => {
-                                    return (<Badge className='platform-badge'>{platform.name}</Badge>);
-                                })}
+                            <div className='project-info project-budget-progress-bar'></div>
+                            <div className='project-info project-genre'><p>Genre: {project.genre}</p></div>
+                            <div className='project-info project-platform-badges'>
+                                <p>Platforms: 
+                                    {project.platforms.map(platform => {
+                                        return (<Badge className='platform-badge'>{platform.name}</Badge>);
+                                    })}
+                                </p>
                             </div>     
-                            <div>
-                                <a className='project-a' href={'/user/' + project.username}>Developer profile: {project.username}</a>
+                            <div className='project-info'>
+                                <p>Developer: <a href={'/user/' + project.username}>{project.username}</a></p>
                             </div>
                             
-                            <div>
-                                <a className='project-a' href={project.webSite}>Web Site: {project.webSite}</a>
-                            </div>                
+                            <div className='project-info'>
+                                <p>Web Site: <a href={project.webSite}>{project.webSite}</a></p>
+                            </div> 
+                            <div className='project-btn-donate'>
+                            <button className="btn-donate">Contribue $</button>
+                            </div>               
                         </div>
                     </div>
                     <br className="clearBoth" />
-                    <div className='project-description'>
-                        <h2>{project.description}</h2>
+                    <div className='project-content'>
+                        <h2>About this project</h2>
+                        <div className='project-description'>
+                            <p>{project.description}</p>
+                        </div>
                     </div>
                 </div>
                 : 'loading...' }

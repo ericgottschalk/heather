@@ -13,11 +13,10 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    text-align: center;
 }
 
 .project-image-gallery{
-    margin:15px;
+    margin: 25px 25px 25px 25px;
     width: 60%;
     float: left;
 }
@@ -31,13 +30,61 @@
     max-width: 700px;
     padding-bottom: 50px!important;
     float: left;
-    margin:15px;
+    margin: 25px 25px 25px 25px;
 }
 
 .image-gallery-slide img{
-    height: 560px;
+    max-height: 560px;
 }
 
 .clearBoth{
     clear: both;
+}
+
+.project-info{
+    margin: 5px;
+    font-size: 30px;
+    color: black;
+}
+
+.project-platform-badges .badge{
+    height: 20px;
+    width: 30px;
+}
+
+.project-title{
+    margin: 50px 0 50px 25px;
+}
+
+.project-btn-donate{
+    display: block;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    bottom: 0;
+}
+
+.btn-donate{
+    font-size: 15px;
+    line-height: 1.5;
+    width: 50%;
+    height: 50px;
+    border-radius: 5px;
+    background: green;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-content{
+    margin: 50px 0 50px 25px;
+}
+
+.project-title{
+    font-family: Big Noodle Too,impact,sans-serif;
+    font-size: 4.88281rem;
+    font-weight: 400;
+    font-variant: normal;
+    line-height: normal;
+    letter-spacing: .5px;
 }
