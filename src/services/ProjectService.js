@@ -1,4 +1,5 @@
 import HttpService from './HttpService';
+import noimage from '../images/no-image.jpg';
 
 class ProjectService {
     constructor(){
@@ -58,14 +59,15 @@ class ProjectService {
             id: proj.id,
             name: proj.name,
             description: proj.description,
-            coverUrl: proj.coverUrl != null ? proj.coverUrl : 'http://cdn1.itpro.co.uk/sites/itpro/files/styles/article_main_wide_image/public/2015/11/windows-10-screen.jpg?itok=TutXVc_1',
+            coverUrl: proj.coverUrl != null ? proj.coverUrl : noimage,
             platforms: proj.platformsRaw || [],
             genre: proj.genre.name,
             date: proj.dateCreated,
             username: proj.user.username,
             userIsVerified: proj.user.verified,
             hash: proj.hash,
-            webSite: proj.webSite
+            webSite: proj.webSite,
+            images: this.mapMedia(proj.media)
         };
     }
 
@@ -73,6 +75,24 @@ class ProjectService {
         return projects.map(proj => {
             return this.mapSingle(proj);
         }) || [];
+    }
+
+    mapMedia(medias){
+        medias = medias || [];
+
+        if (medias.length == 0){
+            return [{
+                original: noimage,
+                thumbnail: noimage,
+            }];
+        }
+
+        return medias.map(media => {
+            return {
+                original: media.url,
+                thumbnail: media.url
+            }
+        });
     }
 }
 

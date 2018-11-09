@@ -2,7 +2,10 @@ import React from 'react';
 import LoginService from '../services/LoginService';
 import UserService from '../services/UserService';
 import ProjectService from '../services/ProjectService';
+import ImageGallery from 'react-image-gallery';
+import { Badge } from 'react-bootstrap';
 import '../styles/project.css';
+import "react-image-gallery/styles/css/image-gallery.css";
 
 class Project extends React.Component {
     constructor(props) {
@@ -32,22 +35,38 @@ class Project extends React.Component {
             });
         });
     }
+
     render(){
         const { project, loadedProject } = this.state;
         return (
             <div>
                 { loadedProject ? 
-                <div>
+                <div>                    
                     <h2>{project.name}</h2>
-
-                    <h2>{project.description}</h2>
-
-                    <div>
-                        <a className='project-a' href={'/user/' + project.username}>Developer profile: {project.username}</a>
+                    <div className='project-top-content'>
+                        <div className='project-image-gallery'>
+                            <ImageGallery items={project.images} />
+                        </div>
+                        <div className='wrap-project-infos'>
+                            <div className='project-budget-progress-bar'></div>
+                            <div className='project-genre'><p>Genre: {project.genre}</p></div>
+                            <div className='project-platform-badges'>
+                                {project.platforms.map(platform => {
+                                    return (<Badge className='platform-badge'>{platform.name}</Badge>);
+                                })}
+                            </div>     
+                            <div>
+                                <a className='project-a' href={'/user/' + project.username}>Developer profile: {project.username}</a>
+                            </div>
+                            
+                            <div>
+                                <a className='project-a' href={project.webSite}>Web Site: {project.webSite}</a>
+                            </div>                
+                        </div>
                     </div>
-                    
-                    <div>
-                        <a className='project-a' href={project.webSite}>Web Site: {project.webSite}</a>
+                    <br className="clearBoth" />
+                    <div className='project-description'>
+                        <h2>{project.description}</h2>
                     </div>
                 </div>
                 : 'loading...' }

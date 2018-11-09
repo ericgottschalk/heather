@@ -2,3 +2,42 @@
     font-size: 25px;
     color: rgba(151,105,245,.98)!important;
 }
+
+.project-top-content{
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: block;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.project-image-gallery{
+    margin:15px;
+    width: 60%;
+    float: left;
+}
+
+.wrap-project-infos{
+    width: 500px;
+    min-height: 560px;
+    box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
+    background: #fff;
+    border-radius: 12px;
+    max-width: 700px;
+    padding-bottom: 50px!important;
+    float: left;
+    margin:15px;
+}
+
+.image-gallery-slide img{
+    height: 560px;
+}
+
+.clearBoth{
+    clear: both;
+}
