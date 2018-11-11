@@ -3,9 +3,11 @@ import LoginService from '../services/LoginService';
 import UserService from '../services/UserService';
 import ProjectService from '../services/ProjectService';
 import ImageGallery from 'react-image-gallery';
+import { Progress } from 'react-sweet-progress';
 import { Badge } from 'react-bootstrap';
 import '../styles/project.css';
 import "react-image-gallery/styles/css/image-gallery.css";
+import "react-sweet-progress/lib/style.css";
 
 class Project extends React.Component {
     constructor(props) {
@@ -43,12 +45,16 @@ class Project extends React.Component {
                 { loadedProject ? 
                 <div>                    
                     <h2 className='project-title'>{project.name}</h2>
-                    <div className='project-top-content'>
+                    <div className='project-top-content wrap-project-infos'>
                         <div className='project-image-gallery'>
                             <ImageGallery items={project.images} />
                         </div>
-                        <div className='wrap-project-infos'>
-                            <div className='project-info project-budget-progress-bar'></div>
+                        <div className='project-infos'>
+                            <div className='project-info project-budget-progress-bar'>
+                                <div className='reached-budget'>${project.reachedBudget}</div>
+                                <div className='budget'>${project.budget}</div>
+                                <Progress className='budget-progress-bar' percent={project.reachedBudgetPercent} status="success" />
+                            </div>
                             <div className='project-info project-genre'><p>Genre: {project.genre}</p></div>
                             <div className='project-info project-platform-badges'>
                                 <p>Platforms: 
@@ -71,9 +77,18 @@ class Project extends React.Component {
                     </div>
                     <br className="clearBoth" />
                     <div className='project-content'>
-                        <h2>About this project</h2>
-                        <div className='project-description'>
-                            <p>{project.description}</p>
+                        <div className='project-content-item'>
+                            <h2>About this project</h2>
+                            <div className='project-description'>
+                                <p>{project.description}</p>
+                            </div>
+                        </div>
+                        <br/><br/><br/><br/>
+                        <div className='project-content-item'>
+                            <h2>Feedbacks</h2>
+                            <div className='project-description'>
+                                <p>{project.description}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

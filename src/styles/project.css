@@ -4,6 +4,7 @@
 }
 
 .project-top-content{
+    margin: auto;
     width: 100%;
     display: -webkit-box;
     display: -webkit-flex;
@@ -13,6 +14,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .project-image-gallery{
@@ -22,15 +24,20 @@
 }
 
 .wrap-project-infos{
-    width: 500px;
+    display: -webkit-box;
     min-height: 560px;
     box-shadow: 0px 8px 60px -10px rgba(13, 28, 39, 0.6);
     background: #fff;
     border-radius: 12px;
-    max-width: 700px;
     padding-bottom: 50px!important;
     float: left;
-    margin: 25px 25px 25px 25px;
+    width: 80%;
+}
+
+@media (max-width: 1400px){
+    .wrap-project-infos{
+        display: flex;
+    }
 }
 
 .image-gallery-slide img{
@@ -45,6 +52,18 @@
     margin: 5px;
     font-size: 30px;
     color: black;
+}
+
+@media (max-width: 500px){
+    .project-info{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 300px){
+    .project-info{
+        font-size: 15px;
+    }
 }
 
 .project-platform-badges .badge{
@@ -88,3 +107,32 @@
     line-height: normal;
     letter-spacing: .5px;
 }
+
+.project-budget-progress-bar{
+    display: inline;
+}
+
+.reached-budget{
+    float: right;
+    margin-right: 6px;
+}
+
+.budget{
+    float: left;
+    margin-left: 6px;
+}
+
+.react-sweet-progress{
+    margin-left: 6px;
+    margin-right: 6px;
+    width: auto!important;
+}
+
+.project-content-item{
+    margin:10px 20px 20px 10px;
+}
+
+.react-sweet-progress-symbol{
+    font-size: 15px;
+}
+

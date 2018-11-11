@@ -67,7 +67,10 @@ class ProjectService {
             userIsVerified: proj.user.verified,
             hash: proj.hash,
             webSite: proj.webSite,
-            images: this.mapMedia(proj.media)
+            images: this.mapMedia(proj.media),
+            reachedBudget: '0.00',
+            budget: '0.00',
+            reachedBudgetPercent: 0
         };
     }
 
