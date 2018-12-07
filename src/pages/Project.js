@@ -66,7 +66,7 @@ class Project extends React.Component {
             
             this.projectService.getFeedbacks(project.id).then(data => {
                 this.setState({
-                    feedbacks: data,
+                    feedbacks: data || [],
                     loadedFeedbacks: true
                 });
             });
@@ -128,89 +128,92 @@ class Project extends React.Component {
                 { loadedProject ? 
                 <div> 
                     <div>
-                        <h2 className='project-title'>{project.name}</h2>
-                        { (this.loginService.isAuthenticated() && this.loginService.getLoggedUser().id == project.idUser) ? 
-                              <div>
-                                  <label className='change-cover-label' htmlFor='cover-picture-input'>Change Image</label>
-                                  <input type="file" id='cover-picture-input' onChange={this.handleCoverImageUpload} />
-                              </div>
-                           :  
-                               "" 
-                        }
-                    </div>                   
-                    
-                    <div className='project-top-content wrap-project-infos'>
-                        <div className='project-image-gallery'>
-                            <ImageGallery items={project.images} />
-                            
-                        </div>
-                        <div className='project-infos'>
-                            <div className='project-info project-budget-progress-bar'>
-                                <div className='reached-budget'>${project.reachedBudget}</div>
-                                <div className='budget'>${project.budget}</div>
-                                <div className='percent'>{project.reachedBudgetPercent}%</div>
-                                <Progress className='budget-progress-bar' percent={project.reachedBudgetPercent} status="success" />
-                            </div>
-                            <div className='project-info project-genre'><p>Genre: {project.genre}</p></div>
-                            <div className='project-info project-platform-badges'>
-                                <p>Platforms: 
-                                    {project.platforms.map(platform => {
-                                        return (<Badge className='platform-badge'>{platform.name}</Badge>);
-                                    })}
-                                </p>
-                            </div>     
-                            <div className='project-info'>
-                                <p>Developer: <a href={'/user/' + project.username}>{project.username}</a></p>
-                            </div>
-                            
-                            <div className='project-info'>
-                                <p>Web Site: <a href={project.webSite}>{project.webSite}</a></p>
-                            </div> 
-                            {
-                                loggedUserContibuition != null ?
-                                    <div className='project-info'>
-                                        <p>Your contribuition: ${loggedUserContibuition}</p>
-                                    </div>
-                                : 
-                                    ""
+                        <div className='project-top'>
+                            <h2 className='project-title'>{project.name}</h2>
+                            { (this.loginService.isAuthenticated() && this.loginService.getLoggedUser().id == project.idUser) ? 
+                                <div>
+                                    <label className='change-cover-label' htmlFor='cover-picture-input'>Change Image</label>
+                                    <input type="file" id='cover-picture-input' onChange={this.handleCoverImageUpload} />
+                                </div>
+                            :  
+                                "" 
                             }
-                            <div className='project-btn-donate'>
-                                <button className="btn-donate" onClick={this.handleOpenModal}>Contribue $</button>
-                                <ReactModal 
-                                    isOpen={this.state.showModal}
-                                    contentLabel="Contribue $"
-                                    >
-                                    
-                                    <button className='cancel-contribuition-modal' onClick={this.handleCloseModal}>Cancel</button>
-                                    <ContribuitionForm idProject={project.id} projectHash={project.hash} />
-                                </ReactModal>
-                            </div>               
+                        </div>                   
+                        
+                        <div className='project-top-content wrap-project-infos'>
+                            <div className='project-image-gallery'>
+                                <ImageGallery items={project.images} />
+                                
+                            </div>
+                            <div className='project-infos'>
+                                <div className='project-info project-budget-progress-bar'>
+                                    <div className='reached-budget'>${project.reachedBudget}</div>
+                                    <div className='budget'>${project.budget}</div>
+                                    <div className='percent'>{project.reachedBudgetPercent}%</div>
+                                    <Progress className='budget-progress-bar' percent={project.reachedBudgetPercent} status="success" />
+                                </div>
+                                <div className='project-info project-genre'><p>Genre: {project.genre}</p></div>
+                                <div className='project-info project-platform-badges'>
+                                    <p>Platforms: 
+                                        {project.platforms.map(platform => {
+                                            return (<Badge className='platform-badge'>{platform.name}</Badge>);
+                                        })}
+                                    </p>
+                                </div>     
+                                <div className='project-info'>
+                                    <p>Developer: <a href={'/user/' + project.username}>{project.username}</a></p>
+                                </div>
+                                
+                                <div className='project-info'>
+                                    <p>Web Site: <a href={project.webSite}>{project.webSite}</a></p>
+                                </div> 
+                                {
+                                    loggedUserContibuition != null ?
+                                        <div className='project-info'>
+                                            <p>Your contribuition: ${loggedUserContibuition}</p>
+                                        </div>
+                                    : 
+                                        ""
+                                }
+                                <div className='project-btn-donate'>
+                                    <button className="btn-donate" onClick={this.handleOpenModal}>Contribue $</button>
+                                    <ReactModal 
+                                        isOpen={this.state.showModal}
+                                        contentLabel="Contribue $"
+                                        >
+                                        
+                                        <button className='cancel-contribuition-modal' onClick={this.handleCloseModal}>Cancel</button>
+                                        <ContribuitionForm idProject={project.id} projectHash={project.hash} />
+                                    </ReactModal>
+                                </div>               
+                            </div>
                         </div>
                     </div>
                     <br className="clearBoth" />
                     <div className='project-content'>
                         <div className='project-content-item'>
-                            <h2>About this project</h2>
+                            <h2 className='roxinho'>About this project</h2>
                             <div className='project-description'>
                                 <p>{project.description}</p>
                             </div>
                         </div>
                         <br/><br/><br/><br/>
                         <div className='project-content-item'>
-                            <h2>Prizes and Rewards for Contribuitors</h2>
+                            <h2 className='roxinho'>Prizes and Rewards for Contribuitors</h2>
                             <div className='project-description'>
                                 <p>{project.prizesAndRewards}</p>
                             </div>
                         </div>
                         <br/><br/><br/><br/>
                         <div className='project-content-item'>
-                            <h2>Feedbacks</h2>
+                            <h2 className='roxinho'>Feedbacks</h2>
                             <div className='user-feedback'>
                                 { loadedFeedback ? this.getFeedbackFormOrUserFeedback(project, userFeedback) : <div className="feedback-form"><button onClick={() => { window.location = '/login'; }} className="btn-post">Login to post an feedback</button></div> }
                             </div>
                             <div className='feedback-list'>
                                 <h5>Feedback list</h5>
                                 { loadedFeedbacks ? <FeedbackList feedbacks={feedbacks}/> : "" }
+                                { loadedFeedbacks && feedbacks.length == 0 ? <p className='feedback-item'>No feedbacks yet</p> : '' }
                             </div>
                         </div>
                     </div>

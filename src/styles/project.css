@@ -23,6 +23,11 @@
     float: left;
 }
 
+.project-top{
+    width: 70%;
+    margin: auto;
+}
+
 .wrap-project-infos{
     display: -webkit-box;
     min-height: 560px;
@@ -30,8 +35,7 @@
     background: #fff;
     border-radius: 12px;
     padding-bottom: 50px!important;
-    float: left;
-    width: 80%;
+    width: 70%;
 }
 
 @media (max-width: 1400px){
@@ -96,7 +100,9 @@
 }
 
 .project-content{
-    margin: 50px 0 50px 25px;
+    width: 70%;
+    margin: auto;
+    margin-top: 50px;
 }
 
 .project-title{
@@ -214,6 +220,10 @@ input[type='file'] {
   
 .feedback-content:last-child {
     margin-bottom: 0px;
+}
+
+.project-description{
+    margin: 20px;
 }
 
 .your-feedback{

@@ -8,7 +8,7 @@ class Footer extends React.Component{
             // <footer>
             //     <p><small>&copy; 2018 Heather - Eric Gottschalk</small></p>
             // </footer>
-            <div></div>
+            <div className='footer'></div>
         );
     }
 }
