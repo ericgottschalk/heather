@@ -236,10 +236,6 @@ h1 {
   }
 }
 
-.home-header{
-  height: 500px;
-}
-
 .truncate {
   white-space: nowrap;
   overflow: hidden;

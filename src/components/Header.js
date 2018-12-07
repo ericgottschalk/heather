@@ -1,6 +1,7 @@
 import React from 'react';
-import {Navbar, NavItem, Nav, MenuItem, NavDropdown} from 'react-bootstrap';
+import { Navbar, NavItem, Nav, MenuItem, NavDropdown } from 'react-bootstrap';
 import LoginServie from '../services/LoginService';
+import '../styles/navbar.css';
 
 class Header extends React.Component {
     constructor(props){
@@ -36,11 +37,14 @@ class Header extends React.Component {
                     <Navbar.Brand>
                         <a href="/home">Heather</a>            
                     </Navbar.Brand>
+                    <Navbar.Toggle />
                 </Navbar.Header>
+                <Navbar.Collapse>
                 <Nav>
                     <NavItem eventKey={1} href="/projects">Projects</NavItem>
                 </Nav>
                 {this.userMenuOrLoginLink()} 
+                </Navbar.Collapse>
             </Navbar>
         );
     }

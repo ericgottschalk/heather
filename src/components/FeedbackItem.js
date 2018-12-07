@@ -7,7 +7,7 @@ class FeedbackObj extends React.Component {
       <div className="feedback-content">
         <div className="feedback-item item-label">
           <div>
-          <p className=""><strong>{new Date(this.props.feedback.dateCreate).toLocaleDateString()}</strong> by: {this.props.feedback.user.username}{ this.props.feedback.user.verified ? <i className="fas fa-check" alt='Verified'></i> : ''}</p>
+          <p className=""><strong>{new Date(this.props.feedback.dateCreate).toLocaleDateString()}</strong> by: <a href={'/user/' + this.props.feedback.user.username}>{this.props.feedback.user.username}{ this.props.feedback.user.verified ? <i className="fas fa-check" alt='Verified'></i> : ''}</a></p>
           </div>
           <div className="spacer2"></div>
           <div className='item-context'>

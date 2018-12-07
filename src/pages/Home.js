@@ -56,7 +56,11 @@ class Home extends React.Component {
         return (
             <div className='home-content'>
                 <div className='home-header'>
-
+                    <h1>With Hather you can share, discover, play and contribute.
+                       <br></br> It's time to make your project come true!
+                       <br></br>Add your project, and shows it to the world! 
+                       <br></br><br></br>This is our Indie Game Crowdfunding platform.
+                    </h1>
                 </div>
                 <Tabs defaultActiveKey={1} id="tab-projects" className="projects-tab roxinho">
                     <Tab eventKey={1} title="Newest" animation>
