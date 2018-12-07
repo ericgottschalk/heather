@@ -136,3 +136,44 @@
     font-size: 15px;
 }
 
+.image-gallery-fullscreen-button{
+    display: none;
+}
+
+.image-gallery-play-button{
+    display: none;
+}
+
+.contribue-form{
+    justify-content: center;
+    width: 520px;
+    text-align: center;
+    display: table;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.cancel-contribuition-modal{
+    border-radius: 5px;
+    background: red;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+input[type='file'] {
+    display: none
+}
+  
+.change-cover-label {
+    background-color: #3498db;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    margin: 10px;
+    padding: 6px 20px
+}
+
+.react-sweet-progress-line-inner{
+    max-width: 350px!important;
+}

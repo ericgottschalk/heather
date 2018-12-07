@@ -26,7 +26,8 @@ class NewProject extends React.Component {
                 genre: '',
                 platformsRaw: [],
                 targetReleaseYear: '',
-                media: []
+                media: [],
+                budget: ''
             },
             submitted: false,
         };
@@ -91,7 +92,7 @@ class NewProject extends React.Component {
         project.userId = this.loginService.getLoggedUser().id;
         project.genre = null;
 
-        if (project.description && project.name && project.platformsRaw.length > 0 && project.genreId && project.targetReleaseYear && project.userId) {
+        if (project.description && project.name && project.platformsRaw.length > 0 && project.genreId && project.targetReleaseYear && project.userId && project.budget) {
             this.setState({ sended: true });
 
             this.projectService.save(project).then(() => {
@@ -129,6 +130,9 @@ class NewProject extends React.Component {
                                 </div>
                                 <div className={'form-group' + (submitted && !project.targetReleaseYear ? ' has-error' : '')}>
                                     <input type="number" min='2018' max='2050' className="form-control" name="targetReleaseYear" value={project.targetReleaseYear} onChange={this.handleChange} placeholder="Target Release Year *" />
+                                </div>
+                                <div className={'form-group' + (submitted && !project.budget ? ' has-error' : '')}>
+                                    <input type="number" min='1' max='150000' className="form-control" name="budget" value={project.budget} onChange={this.handleChange} placeholder="Budget" />
                                 </div>
 
                                 {loadedPlatforms ?

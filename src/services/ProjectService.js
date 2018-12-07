@@ -1,5 +1,6 @@
 import HttpService from './HttpService';
 import noimage from '../images/no-image.jpg';
+import config from '../config';
 
 class ProjectService {
     constructor(){
@@ -54,7 +55,17 @@ class ProjectService {
         return this.httpService.postFormData('api/project/upload-cover-image', data);
     }
 
+    contribue(data){
+        return this.httpService.post('api/project/contribue', data);
+    }
+
+    getUserContribuition(idUser, idProject){
+        return this.httpService.get('api/project/get-user-contribuition/' + idUser + '/', idProject);
+    }
+
     mapSingle(proj){
+        let percent = parseInt(proj.reachedBudget * 100 / proj.budget);
+
         return {
             id: proj.id,
             name: proj.name,
@@ -63,14 +74,15 @@ class ProjectService {
             platforms: proj.platformsRaw || [],
             genre: proj.genre.name,
             date: proj.dateCreated,
+            idUser: proj.user.id,
             username: proj.user.username,
             userIsVerified: proj.user.verified,
             hash: proj.hash,
             webSite: proj.webSite,
-            images: this.mapMedia(proj.media),
-            reachedBudget: '0.00',
-            budget: '0.00',
-            reachedBudgetPercent: 0
+            images: this.mapMedia(proj.coverUrl),
+            reachedBudget: proj.reachedBudget,
+            budget: proj.budget,
+            reachedBudgetPercent: percent
         };
     }
 
@@ -80,22 +92,18 @@ class ProjectService {
         }) || [];
     }
 
-    mapMedia(medias){
-        medias = medias || [];
-
-        if (medias.length == 0){
+    mapMedia(coverUrl){
+        if (coverUrl == null){
             return [{
                 original: noimage,
                 thumbnail: noimage,
             }];
         }
 
-        return medias.map(media => {
-            return {
-                original: media.url,
-                thumbnail: media.url
-            }
-        });
+        return [{
+            original: config.ApiUrl + coverUrl,
+            thumbnail: config.ApiUrl + coverUrl,
+        }]
     }
 }
 

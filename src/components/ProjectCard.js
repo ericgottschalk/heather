@@ -1,12 +1,13 @@
 import React from 'react';
 import { Badge } from 'react-bootstrap';
 import '../styles/card.css';
+import config from '../config';
 
 class CardHeader extends React.Component {
   render() {
     const { image, headerBadge } = this.props;
     var style = { 
-        backgroundImage: 'url(' + image + ')',
+        backgroundImage: 'url(' + config.ApiUrl + image + ')',
     };
     return (
       <header style={style} id={image} className="card-header">

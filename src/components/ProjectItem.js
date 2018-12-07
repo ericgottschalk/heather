@@ -1,11 +1,12 @@
 import React from 'react';
 import { Badge } from 'react-bootstrap';
+import config from '../config';
 
 class Item extends React.Component {
 
   render() {
     let style = { 
-      backgroundImage: 'url(' + this.props.project.coverUrl + ')',
+      backgroundImage: 'url(' + config.ApiUrl + this.props.project.coverUrl + ')',
     };
     return (
       <div className="cell-content">
