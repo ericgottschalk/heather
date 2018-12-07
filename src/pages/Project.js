@@ -5,6 +5,9 @@ import ProjectService from '../services/ProjectService';
 import ContribuitionForm from '../components/ContribuitionForm';
 import ImageGallery from 'react-image-gallery';
 import ReactModal from 'react-modal';
+import FeedbackForm from '../components/FeedbackForm';
+import FeedbackItem from '../components/FeedbackItem';
+import FeedbackList from '../components/FeedbackList';
 import { Progress } from 'react-sweet-progress';
 import { Badge } from 'react-bootstrap';
 import '../styles/project.css';
@@ -22,7 +25,11 @@ class Project extends React.Component {
         this.state = {
             project: {},
             loadedProject: false,
-            showModal: false
+            userFeedback: {},
+            loadedFeedback: false,
+            showModal: false,
+            feedbacks: {},
+            loadedFeedbacks: false
         };
 
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -57,9 +64,28 @@ class Project extends React.Component {
         this.projectService.getByHash(this.props.match.params.hash).then(data => { 
             let project = this.projectService.mapSingle(data);
             
+            this.projectService.getFeedbacks(project.id).then(data => {
+                this.setState({
+                    feedbacks: data,
+                    loadedFeedbacks: true
+                });
+            });
+
             if (this.loginService.isAuthenticated()) {
                 this.projectService.getUserContribuition(this.loginService.getLoggedUser().id, project.id).then(data => {
                     this.handleLoadProject(project, data);
+                });
+
+                this.projectService.getUserFeedback(this.loginService.getLoggedUser().id, project.id).then(data => {
+                    if (!data.success){
+                        alert(data.message);
+                    }
+                    else {
+                        this.setState({
+                            userFeedback: data.feedback,
+                            loadedFeedback: data.success
+                        });
+                    }
                 });
             }
             else{
@@ -80,8 +106,23 @@ class Project extends React.Component {
         });
     }
 
+    getFeedbackFormOrUserFeedback(project, userFeedback){
+        return (
+            <div>
+                { userFeedback == null ?
+                    <FeedbackForm idProject={project.id} projectHash={project.hash} />
+                  : 
+                    <div className='your-feedback'>
+                        <h5>Your feedback</h5>
+                        <FeedbackItem feedback={userFeedback} />
+                    </div>
+                }
+            </div>
+        );
+    }
+
     render(){
-        const { project, loadedProject, loggedUserContibuition } = this.state;
+        const { project, loadedProject, loggedUserContibuition, userFeedback, loadedFeedback, feedbacks, loadedFeedbacks } = this.state;
         return (
             <div>
                 { loadedProject ? 
@@ -157,8 +198,12 @@ class Project extends React.Component {
                         <br/><br/><br/><br/>
                         <div className='project-content-item'>
                             <h2>Feedbacks</h2>
-                            <div className='project-description'>
-                                <p>{project.description}</p>
+                            <div className='user-feedback'>
+                                { loadedFeedback ? this.getFeedbackFormOrUserFeedback(project, userFeedback) : <div className="feedback-form"><button onClick={() => { window.location = '/login'; }} className="btn-post">Login to post an feedback</button></div> }
+                            </div>
+                            <div className='feedback-list'>
+                                <h5>Feedback list</h5>
+                                { loadedFeedbacks ? <FeedbackList feedbacks={feedbacks}/> : "" }
                             </div>
                         </div>
                     </div>

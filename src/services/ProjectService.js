@@ -63,6 +63,18 @@ class ProjectService {
         return this.httpService.get('api/project/get-user-contribuition/' + idUser + '/', idProject);
     }
 
+    feedback(data){
+        return this.httpService.post('api/project/feedback', data);
+    }
+
+    getUserFeedback(idUser, idProject){
+        return this.httpService.get('api/project/get-user-feedback/' + idUser + '/', idProject);
+    }
+
+    getFeedbacks(idProject){
+        return this.httpService.get('api/project/get-feedbacks/', idProject);
+    }
+
     mapSingle(proj){
         let percent = parseInt(proj.reachedBudget * 100 / proj.budget);
 
