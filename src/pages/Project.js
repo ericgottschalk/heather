@@ -90,7 +90,7 @@ class Project extends React.Component {
                         <h2 className='project-title'>{project.name}</h2>
                         { (this.loginService.isAuthenticated() && this.loginService.getLoggedUser().id == project.idUser) ? 
                               <div>
-                                  <label className='change-cover-label' for='cover-picture-input'>Change Image</label>
+                                  <label className='change-cover-label' htmlFor='cover-picture-input'>Change Image</label>
                                   <input type="file" id='cover-picture-input' onChange={this.handleCoverImageUpload} />
                               </div>
                            :  
