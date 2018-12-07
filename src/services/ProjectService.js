@@ -94,7 +94,8 @@ class ProjectService {
             images: this.mapMedia(proj.coverUrl),
             reachedBudget: proj.reachedBudget,
             budget: proj.budget,
-            reachedBudgetPercent: percent
+            reachedBudgetPercent: percent,
+            prizesAndRewards: proj.prizesAndRewards
         };
     }
 

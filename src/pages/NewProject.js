@@ -27,7 +27,8 @@ class NewProject extends React.Component {
                 platformsRaw: [],
                 targetReleaseYear: '',
                 media: [],
-                budget: ''
+                budget: '',
+                prizesAndRewards: ''
             },
             submitted: false,
         };
@@ -92,7 +93,7 @@ class NewProject extends React.Component {
         project.userId = this.loginService.getLoggedUser().id;
         project.genre = null;
 
-        if (project.description && project.name && project.platformsRaw.length > 0 && project.genreId && project.targetReleaseYear && project.userId && project.budget) {
+        if (project.description && project.name && project.platformsRaw.length > 0 && project.genreId && project.targetReleaseYear && project.userId && project.budget && project.prizesAndRewards) {
             this.setState({ sended: true });
 
             this.projectService.save(project).then(() => {
@@ -124,6 +125,9 @@ class NewProject extends React.Component {
                                 </div>
                                 <div className={'form-group' + (submitted && !project.description ? ' has-error' : '')}>
                                     <textarea className="form-control" name="description" value={project.description} onChange={this.handleChange} placeholder="Description *" />
+                                </div>
+                                <div className={'form-group' + (submitted && !project.prizesAndRewards ? ' has-error' : '')}>
+                                    <textarea className="form-control" name="prizesAndRewards" value={project.prizesAndRewards} onChange={this.handleChange} placeholder="Prizes and Rewards for Contribuitors *" />
                                 </div>
                                 <div className={'form-group' + (submitted && !project.webSite ? ' has-error' : '')}>
                                     <input className="form-control" name="webSite" value={project.webSite} onChange={this.handleChange} placeholder="Web Site" />

@@ -197,6 +197,13 @@ class Project extends React.Component {
                         </div>
                         <br/><br/><br/><br/>
                         <div className='project-content-item'>
+                            <h2>Prizes and Rewards for Contribuitors</h2>
+                            <div className='project-description'>
+                                <p>{project.prizesAndRewards}</p>
+                            </div>
+                        </div>
+                        <br/><br/><br/><br/>
+                        <div className='project-content-item'>
                             <h2>Feedbacks</h2>
                             <div className='user-feedback'>
                                 { loadedFeedback ? this.getFeedbackFormOrUserFeedback(project, userFeedback) : <div className="feedback-form"><button onClick={() => { window.location = '/login'; }} className="btn-post">Login to post an feedback</button></div> }
