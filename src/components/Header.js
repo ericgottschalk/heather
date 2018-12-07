@@ -41,7 +41,7 @@ class Header extends React.Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                 <Nav>
-                    <NavItem eventKey={1} href="/projects">Projects</NavItem>
+                    <NavItem eventKey={1} href="/home">Projects</NavItem>
                 </Nav>
                 {this.userMenuOrLoginLink()} 
                 </Navbar.Collapse>

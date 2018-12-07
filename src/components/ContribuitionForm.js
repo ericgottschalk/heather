@@ -105,7 +105,7 @@ class ContribuitionForm extends React.Component{
                                 className="form-control"
                                 type="number"
                                 name="aumont"
-                                placeholder="Total"
+                                placeholder="Total *"
                                 min='1' 
                                 max='1500'
                                 onKeyUp={this.handleInputChange}
@@ -117,7 +117,7 @@ class ContribuitionForm extends React.Component{
                                 className="form-control"
                                 type="text"
                                 name="taxId"
-                                placeholder="Tax Id"
+                                placeholder="Tax Id *"
                                 onKeyUp={this.handleInputChange}
                                 onFocus={this.handleInputFocus}
                             />
@@ -128,7 +128,7 @@ class ContribuitionForm extends React.Component{
                             className="form-control"
                             type="tel"
                             name="cardNumber"
-                            placeholder="Card Number"
+                            placeholder="Card Number *"
                             onKeyUp={this.handleInputChange}
                             onFocus={this.handleInputFocus}
                         />
@@ -138,7 +138,7 @@ class ContribuitionForm extends React.Component{
                             className="form-control"
                             type="text"
                             name="cardName"
-                            placeholder="Name"
+                            placeholder="Name *"
                             onKeyUp={this.handleInputChange}
                             onFocus={this.handleInputFocus}
                         />
@@ -149,7 +149,7 @@ class ContribuitionForm extends React.Component{
                                 className="form-control"
                                 type="tel"
                                 name="cardExpiration"
-                                placeholder="Expiration"
+                                placeholder="Expiration *"
                                 onKeyUp={this.handleInputChange}
                                 onFocus={this.handleInputFocus}
                             />
@@ -159,7 +159,7 @@ class ContribuitionForm extends React.Component{
                                 className="form-control"
                                 type="tel"
                                 name="cvv"
-                                placeholder="CVC"
+                                placeholder="CVC *"
                                 onKeyUp={this.handleInputChange}
                                 onFocus={this.handleInputFocus}
                             />
